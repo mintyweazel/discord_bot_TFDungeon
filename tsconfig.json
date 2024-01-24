@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2020"
+    ],
+    "module": "commonjs",
+    "target": "es2020",
+    "outDir": "./lib",
+    "declaration": true,
+    "incremental": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "isolatedModules": true,
+    "noUnusedLocals": false,
+    "skipLibCheck": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "pretty": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
+    "noEmitHelpers": false,
+    "noEmitOnError": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./node_modules/*"]
+    }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}

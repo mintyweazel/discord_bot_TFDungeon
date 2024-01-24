@@ -1,0 +1,29 @@
+{
+  "name": "discord_bot_TFDungeon",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/main.js",
+  "scripts": {
+    "start": "node lib/main.js",
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -w -p tsconfig.json"
+  },
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.44",
+    "@replit/database": "^2.0.5",
+    "discord.js": "^14.14.1",
+    "rot-js": "^2.2.0",
+    "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3"
+  }
+}

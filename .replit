@@ -1,6 +1,5 @@
 entrypoint = "lib/main.js"
-#run = "npm run build && npm run start"
-run = "echo ok"
+run = "npm run build && npm run start"
 
 [nix]
 channel = "stable-23_11"
