@@ -1,14 +1,16 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import { DISCORD_TOKEN } from './config';
 import { syncSlashCommands } from './commands';
+import { createGameSession, handleMoveCommand, handleMapCommand, GameSession } from './game/game';
 
 const client = new Client({
+    // closeTimeout: 1000 * 10,
     intents: Object.values(GatewayIntentBits).reduce(
         (a: any, b: any) => a | b,
     ) as GatewayIntentBits,
 });
 
-syncSlashCommands();
+let session: GameSession;
 
 client.once(Events.ClientReady, (readyClient) => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`);
@@ -21,19 +23,35 @@ client.once(Events.ClientReady, (readyClient) => {
 // });
 
 client.on(Events.InteractionCreate, async (interaction) => {
-    if (!interaction.isCommand()) return;
-    // if (!interaction.isChatInputCommand()) return;
+    if (!interaction.isChatInputCommand()) return;
 
     const { commandName } = interaction;
 
-    switch (commandName) {
-        case 'map': {
-            await interaction.reply('/map: Not implemented yet!');
-            break;
+    try {
+        switch (commandName) {
+            case 'map': {
+                await interaction.deferReply();
+                await handleMapCommand(session, interaction);
+                break;
+            }
+            case 'move': {
+                await interaction.deferReply();
+                await handleMoveCommand(session, interaction);
+                break;
+            }
+            default:
+                break;
         }
-        default:
-            break;
+    } catch (error) {
+        console.error(error);
+        await interaction.reply(`We got errors in server-side!`);
     }
 });
 
-client.login(DISCORD_TOKEN);
+(async () => {
+    session = await createGameSession();
+
+    syncSlashCommands();
+
+    await client.login(DISCORD_TOKEN);
+})();
